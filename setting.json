@@ -1,0 +1,184 @@
+{
+  "PROJECT" : {
+    "CUSTOMER" : "X-FACTOR",
+    "TYPE" : "System",
+    "LOG" : {
+      "directory" : "log/",
+      "fileName" : "log_",
+      "fileFormat" : ".log"
+    },
+    "PROGRESSBAR" : "False",
+    "TEST" : {
+      "DAILY" : "false"
+    },
+    "AUTOCREATE" : {
+      "USE" : "True",
+      "DROP" : "True",
+      "TABLE" :{
+        "MA": {
+          "USE": "TRUE",
+          "DROP" : "True",
+          "NAME": "minutely_asset"
+        },
+        "DA": {
+          "USE": "TRUE",
+          "DROP": "True",
+          "NAME": "daily_asset"
+        },
+        "MSL": {
+          "USE": "TRUE",
+          "DROP": "True",
+          "NAME": "minutely_statistics_list"
+        },
+        "DSL": {
+          "USE": "TRUE",
+          "DROP": "True",
+          "NAME": "daily_statistics_list"
+        },
+        "MS": {
+          "USE": "TRUE",
+          "DROP": "TRUE",
+          "NAME": "minutely_statistics"
+        },
+        "DS": {
+          "USE": "TRUE",
+          "DROP": "TRUE",
+          "NAME": "daily_statistics"
+        },
+        "VQ": {
+          "USE": "true",
+          "DROP": "TRUE",
+          "NAME": "vulnerability_list"
+        },
+        "VJ": {
+          "USE": "true",
+          "DROP": "TRUE",
+          "NAME": "vulnerability_judge"
+        }
+      }
+    }
+  },
+  "CORE" : {
+    "Tanium" : {
+      "COREUSE" : "true",
+      "ONOFFTYPE" : "online",
+      "PROJECT" :{
+          "VUL" : {
+            "USE": "true"
+          }
+      },
+      "CYCLE" : {
+        "MINUTELY" : {
+          "USE" : "true",
+          "TIME" : 300
+        },
+        "DAILY" : {
+          "USE" : "true",
+          "TIME" : {
+            "hour" : "00",
+            "minute" : "00"
+          }
+        }
+      },
+      "SOURCE" : {
+        "MINUTELY" : {
+          "INPUT" : {
+            "API" : "true",
+            "DB" : {
+              "PS" : "false",
+              "MY" : "false"
+            }
+          },
+          "Transform" : "false",
+          "OUTPUT": {
+            "API" : "false",
+            "DB" : {
+              "PS" : "true",
+              "MY" : "false"
+            }
+          }
+        },
+        "DAILY" : {
+        }
+      },
+      "STATISTICS" : {
+        "COLLECTIONUSE" : "true",
+        "MINUTELY" : {
+          "INPUT" : {
+            "API" : "false",
+            "DB" : {
+              "PS" : "true",
+              "MY" : "false"
+            }
+          },
+          "Transform": "true",
+          "OUTPUT": {
+            "API" : "false",
+            "DB" : {
+              "PS" : "true",
+              "MY" : "false"
+            }
+          }
+        },
+        "DAILY" : {
+        }
+      },
+      "INPUT" : {
+        "API" : {
+          "URL": "https://1.223.168.93:49105",
+          "PATH": {
+            "SesstionKey": "/api/v2/session/login",
+            "Sensor": "/api/v2/result_data/saved_question/"
+          },
+          "username": "administrator",
+          "password": "xion123!",
+          "SensorID": {
+            "COMMON" : "4872",
+            "VUL" : "4356"
+          }
+        },
+        "DB" : {
+          "PS" : {
+            "HOST": "1.223.168.93",
+            "PORT": "40011",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PWD": "psql",
+            "TNM": {
+              "MA" : "minutely_asset",
+              "DA": "daily_asset",
+              "MSL" : "minutely_statistics_list",
+              "DSL" : "daily_statistics_list",
+              "MS" : "minutely_statistics",
+              "DS" : "daily_statistics"
+            }
+          }
+        }
+      },
+      "OUTPUT" : {
+        "DB" : {
+          "PS" : {
+            "HOST": "1.223.168.93",
+            "PORT": "40011",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PWD": "psql",
+            "TNM": {
+              "MA" : "minutely_asset",
+              "DA": "daily_asset",
+              "MSL" : "minutely_statistics_list",
+              "DSL" : "daily_statistics_list",
+              "MS" : "minutely_statistics",
+              "DS" : "daily_statistics",
+              "VQ" : "vulnerability_list",
+              "VJ" : "vulnerability_judge"
+            }
+          }
+        }
+      }
+    },
+    "Zabbix" : {
+
+    }
+  }
+}
